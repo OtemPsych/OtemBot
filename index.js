@@ -101,11 +101,7 @@ client.distube
             await interaction.editReply({ embeds: [playSongEmbed(queue, song)] });
         }
     })
-    .on('addSong', async (queue, song) => {        
-        const queueDuration = queue.songs
-            .map(song => song.duration)
-            .reduce((accumulator, duration) => accumulator + duration, 0);
-
+    .on('addSong', async (queue, song) => {
         const addEmbed = new EmbedBuilder()
             .setColor(sourceToHex(song.source))
             .setTitle(song.name)
@@ -115,7 +111,7 @@ client.distube
             .addFields(
                 { name: 'Request', value: `${song.user}`, inline: true },
                 { name: 'Duration', value: `${song.formattedDuration}`, inline: true },
-                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - ${formatDuration(queueDuration)}`, inline: true }
+                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - ${queue.formattedDuration}`, inline: true }
             )
             .setTimestamp()
             .setFooter({ text: 'From OtemBot' });
