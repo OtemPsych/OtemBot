@@ -1,0 +1,13 @@
+{
+    "token": "<YOUR BOT'S TOKEN HERE>",
+    "clientId": "<YOUR BOT'S APPLICATION ID HERE>",
+    "guildId": "<OPTIONALLY ADD THE SERVER ID OF YOUR DEVELOPMENT SERVER HERE>",
+    "colors": {
+        "soundcloud": "#F26F23",
+        "youtube": "#EF3E3E",
+        "spotify": "#1ED760"
+    },
+    "emoji": {
+        "music": "♪"
+    }
+}
