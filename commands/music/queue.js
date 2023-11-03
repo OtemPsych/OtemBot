@@ -7,14 +7,14 @@ module.exports = {
         .setName('queue')
         .setDescription('Shows the queued songs.'),
     async execute(interaction) {
-        const limit = 1990;
+        const limit = 2000;
         const queue = interaction.client.distube.getQueue(interaction.guildId);
 
         let limitReached = false;
         let result = '';
         for (const [i, song] of queue.songs.entries()) {
             const songString = `${i === 0 ? 'Playing:' : `${i + 1}.`} [${song.name}](<${song.url}>) - ${song.formattedDuration}`;
-            if ((result.length + songString.length + 1) <= limit) {
+            if ((result.length + songString.length) <= limit) {
                 result += `${songString}\n`;
             } else {
                 limitReached = true;

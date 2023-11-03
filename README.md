@@ -1,6 +1,6 @@
 # OtemBot
 
-A Discord bot that can play music in a voice channel by providing a query to search and play a YouTube video, or by directly providing a YouTube/SoundCloud/Spotify URL. This bot uses [Discord.js 14](https://discord.js.org/) and [DisTube.js](https://distube.js.org/#/) to provide music playback in a Discord server.
+An educational project that uses a Discord bot that can play music in a voice channel by providing a query to search and play a YouTube video, or by directly providing a YouTube/SoundCloud/Spotify URL. This bot uses [Discord.js 14](https://discord.js.org/) and [DisTube.js](https://distube.js.org/#/) to provide music playback in a Discord server.
 
 ## Features
 

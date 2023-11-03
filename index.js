@@ -21,7 +21,7 @@ client.interactionsMap = new Map();
 // Load DisTube
 client.distube = new DisTube(client, {
     leaveOnStop: false,
-    emitNewSongOnly: true,
+    emitNewSongOnly: false,
     emitAddSongWhenCreatingQueue: false,
     emitAddListWhenCreatingQueue: false,
     plugins: [

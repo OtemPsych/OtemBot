@@ -7,8 +7,7 @@ module.exports = {
         .setName('previous')
         .setDescription('Plays the previous song in the queue.'),
     async execute(interaction) {    
-        const queue = interaction.client.distube.getQueue(interaction.guild.id);
-
+        const queue = interaction.client.distube.getQueue(interaction.guildId);
         if (queue.previousSongs.length === 0) {
             return interaction.reply({
                 content: 'There is no previous song in the queue.',

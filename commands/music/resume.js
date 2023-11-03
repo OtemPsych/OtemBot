@@ -12,7 +12,7 @@ module.exports = {
 
         if (!queue.paused) {
             return interaction.reply({
-                content: `\`${songName}\` isn't paused.`,
+                content: `\`${songName}\` is already playing.`,
                 ephemeral: true,
             });
         }
