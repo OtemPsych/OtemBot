@@ -32,15 +32,15 @@ An educational project that uses a Discord bot that can play music in a voice ch
 
 * Node Package Manager (NPM)
 * Node.js
-* @discordjs/opus
-* @discordjs/voice
-* @distube/soundcloud
-* @distube/spotify
-* @distube/yt-dlp
-* discord.js
-* distube
-* ffmpeg-static
-* libsodium-wrappers
+* [@discordjs/opus](https://www.npmjs.com/package/@discordjs/opus)
+* [@discordjs/voice](https://www.npmjs.com/package/@discordjs/voice)
+* [@distube/soundcloud](https://www.npmjs.com/package/@distube/soundcloud)
+* [@distube/spotify](https://www.npmjs.com/package/@distube/spotify)
+* [@distube/yt-dlp](https://www.npmjs.com/package/@distube/yt-dlp)
+* [discord.js](https://discord.js.org/)
+* [distube](https://distube.js.org/#/)
+* [ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static)
+* [libsodium-wrappers](https://www.npmjs.com/package/libsodium-wrappers)
 
 ## Installation
 
