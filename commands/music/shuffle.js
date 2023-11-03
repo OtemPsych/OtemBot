@@ -5,7 +5,7 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('shuffle')
-        .setDescription('Shuffles the songs in the queue.'),
+        .setDescription('Shuffle the songs in the queue.'),
     async execute(interaction) {
         const queue = interaction.client.distube.getQueue(interaction.guildId);
         if (queue.songs.length <= 2) {

@@ -5,7 +5,7 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('volume')
-        .setDescription('Sets the bot\'s volume for the server.')
+        .setDescription("Set the bot's volume for the server.")
         .addIntegerOption(option =>
                 option.setName('percentage')
                     .setDescription('The percentage of the volume ranging from 1 to 100.')

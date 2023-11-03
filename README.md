@@ -10,23 +10,25 @@ An educational project that uses a Discord bot that can play music in a voice ch
 * Skip, pause, resume and stop playback.
 * Seek to a specific timestamp in the song.
 * Shuffle the enqueued songs.
+* Continue playing related songs when the queue is empty after enabling autoplay.
 
 ## Commands
 
-* `/disconnect`: Disconnects the bot from the voice channel.
-* `/help`: Lists all commands available.
-* `/pause`: Pauses the current song.
-* `/play <query>`: Plays a song by providing a query or a URL.
-* `/playskip <query>`: Skips the current song and starts playing another one by providing a query or a URL.
-* `/previous`: Plays the previous song in the queue.
-* `/queue`: Shows the queued songs.
-* `/resume`: Resumes the paused song.
-* `/seek <timestamp>`: Jumps to a specific time in the song.
-* `/shuffle`: Shuffles the songs in the queue.
-* `/skip`: Skips to the next song in the queue.
-* `/song`: Shows the song currently playing.
-* `/stop`: Stops playing the current song and removes all songs from the queue.
-* `/volume <volume>`: Sets the bot's volume for the server.
+* `/autoplay`: Toggle queue autoplay which keeps playing related songs.
+* `/disconnect`: Disconnect the bot from the voice channel.
+* `/help`: List all commands available.
+* `/pause`: Pause the current song.
+* `/play <query>`: Play a song by providing a query or a URL.
+* `/playskip <query>`: Skip the current song and start playing another one by providing a query or a URL.
+* `/previous [count]`: Play the previous song or specify a number to jump back multiple songs.
+* `/queue`: Show the queued songs.
+* `/resume`: Resume the paused song.
+* `/seek <timestamp>`: Jump to a specific time in the song.
+* `/shuffle`: Shuffle the songs in the queue.
+* `/skip [count]`: Advance to the next song or specify a number to skip multiple songs at once.
+* `/song`: Show the song currently playing.
+* `/stop`: Stop playing the current song and remove all songs from the queue.
+* `/volume <volume>`: Set the bot's volume for the server.
 
 ## Dependencies
 

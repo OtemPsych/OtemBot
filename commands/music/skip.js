@@ -17,8 +17,15 @@ module.exports = {
         const actualSkipCount = Math.min(skipCount, queue.songs.length);
 
         if (queue.songs.length - 1 < skipCount) {
-            interaction.reply(`Skipping ${actualSkipCount > 1 ? `${actualSkipCount} songs` : `\`${currentSongName}\``}. There are no more songs in the queue.`);
-            queue.stop();
+            let replyStr = 'Skipping ';
+            replyStr += `${(actualSkipCount > 1) ? `${actualSkipCount} songs` : `\`${currentSongName}\``}.`;
+            if (!queue.autoplay) {
+                replyStr += ' There are no more songs in the queue.';
+            }
+
+            interaction.reply(replyStr);
+
+            queue.autoplay ? queue.skip() : queue.stop();
             return;
         }
 

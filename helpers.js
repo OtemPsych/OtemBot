@@ -24,9 +24,11 @@ module.exports = {
             .setAuthor({ name: `${emoji.music} Now playing ${emoji.music}` })
             .addFields(
                 { name: 'Request', value: `${song.user}`, inline: true },
-                { name: 'Duration', value: `${queue.currentTime > 0 ? `${queue.formattedCurrentTime} / ` : ''}${song.formattedDuration}`, inline: true },
-                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - ${queue.formattedDuration}`, inline: true },
-                { name: 'Volume', value: `${queue.volume}%` }
+                { name: 'Duration', value: `${queue.currentTime > 0 ? `\`${queue.formattedCurrentTime}\` / ` : ''}\`${song.formattedDuration}\``, inline: true },
+                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - \`${queue.formattedDuration}\``, inline: true },
+                { name: 'Volume', value: `\`${queue.volume}%\``, inline: true },
+                { name: 'Autoplay', value: `\`${queue.autoplay ? 'On' : 'Off'}\``, inline: true },
+                { name: '\u200B', value: '\u200B', inline: true },
             )
             .setImage(song.thumbnail)
             .setTimestamp()

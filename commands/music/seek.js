@@ -6,7 +6,7 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('seek')
-        .setDescription('Jumps to a specific time in the song.')
+        .setDescription('Jump to a specific time in the song.')
         .addStringOption(option =>
             option.setName('timestamp')
                 .setDescription('The time to skip to in the format H:M:S (for example, 2:53).')

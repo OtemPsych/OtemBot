@@ -5,7 +5,7 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('queue')
-        .setDescription('Shows the queued songs.'),
+        .setDescription('Show the queued songs.'),
     async execute(interaction) {
         const limit = 2000;
         const queue = interaction.client.distube.getQueue(interaction.guildId);

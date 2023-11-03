@@ -5,7 +5,7 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('resume')
-        .setDescription('Resumes the paused song.'),
+        .setDescription('Resume the paused song.'),
     async execute(interaction) {
         const queue = interaction.client.distube.getQueue(interaction.guildId);
         const songName = queue.songs[0].name;

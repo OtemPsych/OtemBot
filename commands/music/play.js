@@ -4,7 +4,7 @@ module.exports = {
     requiresVoiceChannel: true,
     data: new SlashCommandBuilder()
         .setName('play')
-        .setDescription('Plays a song by providing a query or a URL.')
+        .setDescription('Play a song by providing a query or a URL.')
         .addStringOption(option =>
             option.setName('query')
                 .setDescription('A URL or a query to search and play.')

@@ -4,7 +4,7 @@ module.exports = {
     requiresVoiceChannel: true,
     data: new SlashCommandBuilder()
         .setName('playskip')
-        .setDescription('Skips the current song and starts playing another one by providing a query or a URL.')
+        .setDescription('Skip the current song and start playing another one by providing a query or a URL.')
         .addStringOption(option =>
             option.setName('query')
                 .setDescription('A YouTube/SoundCloud/Spotify URL or a query to search and play.')
