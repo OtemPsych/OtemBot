@@ -110,8 +110,8 @@ client.distube
             .setThumbnail(song.thumbnail)
             .addFields(
                 { name: 'Request', value: `${song.user}`, inline: true },
-                { name: 'Duration', value: `${song.formattedDuration}`, inline: true },
-                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - ${queue.formattedDuration}`, inline: true }
+                { name: 'Duration', value: `\`${song.formattedDuration}\``, inline: true },
+                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - \`${queue.formattedDuration}\``, inline: true }
             )
             .setTimestamp()
             .setFooter({ text: 'From OtemBot' });

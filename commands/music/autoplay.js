@@ -5,7 +5,7 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('autoplay')
-        .setDescription('Toggle queue autoplay which keeps playing related songs.'),
+        .setDescription('Toggle queue autoplay which continues playing related songs once the queue is empty.'),
     async execute(interaction) {
         const queue = interaction.client.distube.getQueue(interaction.guildId);
         const autoplayStatus = queue.toggleAutoplay();
