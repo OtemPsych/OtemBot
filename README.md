@@ -83,12 +83,12 @@ npm install
 }
 ```
 
-8. Invite the bot to your server by using the following link (change the `client_id` beforehand):
+7. Invite the bot to your server by using the following link (change the `client_id` beforehand):
 ```
 https://discord.com/api/oauth2/authorize?client_id=<YOUR BOT'S APPLICATION ID HERE>&permissions=36703232&scope=bot%20applications.commands
 ```
 
-7. Deploy the bot commands and run the bot:
+8. Deploy the bot commands and run the bot:
 ```bash
 node deploy-commands.js
 node index.js
