@@ -12,6 +12,14 @@ An educational project that uses a Discord bot that can play music in a voice ch
 * Shuffle the enqueued songs.
 * Continue playing related songs when the queue is empty after enabling autoplay.
 
+## Images
+
+### Adding songs to the queue
+
+![image](https://github.com/OtemPsych/OtemBot/assets/8961693/b3caf997-80c8-421e-b643-9869a3ca0d31)
+
+![image](https://github.com/OtemPsych/OtemBot/assets/8961693/4d088065-2df0-4e56-ae7a-803e56514fca)
+
 ## Commands
 
 * `/autoplay`: Toggle queue autoplay which keeps playing related songs.
