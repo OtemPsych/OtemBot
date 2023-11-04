@@ -22,7 +22,7 @@ An educational project that uses a Discord bot that can play music in a voice ch
 
 ## Commands
 
-* `/autoplay`: Toggle queue autoplay which keeps playing related songs.
+* `/autoplay`: Toggle queue autoplay which continues playing related songs once the queue is empty.
 * `/disconnect`: Disconnect the bot from the voice channel.
 * `/help`: List all commands available.
 * `/pause`: Pause the current song.
@@ -79,14 +79,7 @@ npm install
     "token": "<YOUR BOT'S TOKEN HERE>",
     "clientId": "<YOUR BOT'S APPLICATION ID HERE>",
     "guildId": "<OPTIONALLY ADD THE SERVER ID OF YOUR DEVELOPMENT SERVER HERE>",
-    "colors": {
-        "soundcloud": "#F26F23",
-        "youtube": "#EF3E3E",
-        "spotify": "#1ED760"
-    },
-    "emoji": {
-        "music": "♪"
-    }
+    ...
 }
 ```
 
