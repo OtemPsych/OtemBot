@@ -9,6 +9,7 @@ An educational project that uses a Discord bot that can play music in a voice ch
 * Volume control to adjust the bot's volume in the voice channel.
 * Skip, pause, resume and stop playback.
 * Seek to a specific timestamp in the song.
+* Automatically fetch the lyrics to the song currently playing.
 * Shuffle the enqueued songs.
 * Continue playing related songs when the queue is empty after enabling autoplay.
 
@@ -25,6 +26,7 @@ An educational project that uses a Discord bot that can play music in a voice ch
 * `/autoplay`: Toggle queue autoplay which continues playing related songs once the queue is empty.
 * `/disconnect`: Disconnect the bot from the voice channel.
 * `/help`: List all commands available.
+* `/lyrics`: Fetch the lyrics to the song currently playing.
 * `/pause`: Pause the current song.
 * `/play <query>`: Play a song by providing a query or a URL.
 * `/playskip <query>`: Skip the current song and start playing another one by providing a query or a URL.
@@ -42,6 +44,7 @@ An educational project that uses a Discord bot that can play music in a voice ch
 
 * Node Package Manager (NPM)
 * Node.js
+* axios
 * [@discordjs/opus](https://www.npmjs.com/package/@discordjs/opus)
 * [@discordjs/voice](https://www.npmjs.com/package/@discordjs/voice)
 * [@distube/soundcloud](https://www.npmjs.com/package/@distube/soundcloud)
@@ -79,6 +82,7 @@ npm install
     "token": "<YOUR BOT'S TOKEN HERE>",
     "clientId": "<YOUR BOT'S APPLICATION ID HERE>",
     "guildId": "<OPTIONALLY ADD THE SERVER ID OF YOUR DEVELOPMENT SERVER HERE>",
+	"geniusToken": "<YOUR GENIUS TOKEN FOR FETCHING SONG LYRICS (ACCOUNT NEEDED)>",
     ...
 }
 ```

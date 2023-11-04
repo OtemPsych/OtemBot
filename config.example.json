@@ -2,6 +2,7 @@
     "token": "<YOUR BOT'S TOKEN HERE>",
     "clientId": "<YOUR BOT'S APPLICATION ID HERE>",
     "guildId": "<OPTIONALLY ADD THE SERVER ID OF YOUR DEVELOPMENT SERVER HERE>",
+    "geniusToken": "<YOUR GENIUS TOKEN FOR FETCHING SONG LYRICS (ACCOUNT NEEDED)>",
     "colors": {
         "soundcloud": "#F26F23",
         "youtube": "#EF3E3E",

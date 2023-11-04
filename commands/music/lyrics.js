@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { geniusToken, colors } = require('../../config.json');
+const { SlashCommandBuilder } = require('discord.js');
+const { geniusToken } = require('../../config.json');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
@@ -14,6 +14,56 @@ module.exports = {
             return (this.type === 'text') ? $(this).text() + '\n' : module.exports.expandElement($, this) + '\n';
         }).get().join('');
     },
+    async fetchSongUrl(songId) {
+        try {
+            const response = await axios.get(`https://api.genius.com/songs/${songId}`, {
+                headers: {
+                    Authorization: `Bearer ${geniusToken}`,
+                },
+            });
+            return response.data.response.song.url;
+        } catch {
+            return '';
+        }
+    },
+    async fetchParseLyrics(lyricsUrl) {
+        try {
+            const response = await axios.get(lyricsUrl);
+            const $ = cheerio.load(response.data);
+
+            return module.exports.expandElement($, '.Lyrics__Container-sc-1ynbvzw-1')
+                .split('\n')
+                .filter((line, index, array) => {
+                    if (index === 0 || index === array.length - 1) {
+                        return true;
+                    }
+                    
+                    const trimmedLine = line.trim();
+                    const prevLine = array[index - 1].trim();
+                    const nextLine = array[index + 1].trim();
+
+                    if (trimmedLine === '' && prevLine !== '' && nextLine !== '') {
+                        return false;
+                    }
+                    if (trimmedLine === '' && nextLine === '') {
+                        return false;
+                    }
+                    return true;
+                })
+                .join('\n');
+        } catch {
+            return '';
+        }
+    },
+    findBestHit(hits) {
+        if (hits.length > 0) {
+            const hitComponents = hits[0].result.path.split('-');
+            if (hitComponents[hitComponents.length - 1] === 'lyrics') {
+                return hits[0];
+            }
+        }
+        return null;
+    },
     async execute(interaction) {
         await interaction.deferReply();
 
@@ -21,65 +71,24 @@ module.exports = {
         const songName = queue.songs[0].name;
 
         let lyrics = '';
-        let lyricsUrl = '';
         let geniusQuery = songName.toLowerCase().split(' ');
+        let songUrl = '';
         while (lyrics === '' && geniusQuery.length > 0) {
             const response = await axios.get(`https://api.genius.com/search?q=${encodeURIComponent(geniusQuery.join(' '))}`, {
                 headers: {
                     Authorization: `Bearer ${geniusToken}`,
                 },
             });
-            const hits = response.data.response.hits;
-            if (hits.length > 0) {
-                const hitPathComponents = hits[0].result.path.split('-');
-                if (hitPathComponents[hitPathComponents.length - 1] !== 'lyrics') {
-                    geniusQuery = geniusQuery.slice(0, geniusQuery.length - 1);
-                    continue;
+            const bestHit = module.exports.findBestHit(response.data.response.hits);
+            if (bestHit !== null) {
+                const songId = bestHit.result.id;
+                songUrl = await module.exports.fetchSongUrl(songId);
+                if (songUrl !== '') {
+                    lyrics = await module.exports.fetchParseLyrics(songUrl);
                 }
-
-                const songId = hits[0].result.id;
-                try {
-                    const response = await axios.get(`https://api.genius.com/songs/${songId}`, {
-                        headers: {
-                            Authorization: `Bearer ${geniusToken}`,
-                        },
-                    });
-                    lyricsUrl = response.data.response.song.url;
-
-                    try {
-                        const response = await axios.get(lyricsUrl);
-                        const $ = cheerio.load(response.data);
-                        let lyricsElement = module.exports.expandElement($, '.Lyrics__Container-sc-1ynbvzw-1')
-                            .split('\n')
-                            .filter((line, index, array) => {
-                                if (index === 0 || index === array.length - 1) {
-                                    // Keep the first and last lines as they can't have consecutive empty lines
-                                    return true;
-                                }
-                                
-                                const trimmedLine = line.trim();
-                                const prevLine = array[index - 1].trim();
-                                const nextLine = array[index + 1].trim();
-
-                                if (trimmedLine === '' && prevLine !== '' && nextLine !== '') {
-                                    return false;
-                                }
-                                if (trimmedLine === '' && nextLine === '') {
-                                    return false;
-                                }
-                                return true;
-                            }).join('\n');
-                        console.log(lyricsElement);
-                        lyrics = lyricsElement;
-                    } catch {
-                        lyrics = '';
-                    }
-                } catch {
-                    lyricsUrl = '';
-                }
+            } else {
+                geniusQuery = geniusQuery.slice(0, geniusQuery.length - 1);
             }
-
-            geniusQuery = geniusQuery.slice(0, geniusQuery.length - 1);
         }
 
         if (lyrics === '') {
@@ -87,7 +96,7 @@ module.exports = {
         } else {
             interaction.editReply({
                 files: [{
-                    attachment: Buffer.from(`Lyrics for \`${songName}\`:\n\n${lyrics}`),
+                    attachment: Buffer.from(`"${songName}" - Lyrics\nParsed from: ${songUrl}\n\n${lyrics}`),
                     name: `${songName}_lyrics.txt`,
                 }]
             });
