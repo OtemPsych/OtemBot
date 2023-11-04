@@ -6,7 +6,7 @@ const { DisTube } = require('distube');
 const { SpotifyPlugin } = require('@distube/spotify');
 const { SoundCloudPlugin } = require('@distube/soundcloud');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
-const { sourceToHex, formatDuration, playSongEmbed } = require('./helpers');
+const { sourceToHex, playSongEmbed } = require('./helpers');
 
 const client = new Client({
     intents: [
@@ -111,7 +111,7 @@ client.distube
             .addFields(
                 { name: 'Request', value: `${song.user}`, inline: true },
                 { name: 'Duration', value: `\`${song.formattedDuration}\``, inline: true },
-                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - \`${queue.formattedDuration}\``, inline: true }
+                { name: 'Queue', value: `${queue.songs.length} song${queue.songs.length > 1 ? 's' : ''} - \`${queue.formattedDuration}\``, inline: true },
             )
             .setTimestamp()
             .setFooter({ text: 'From OtemBot' });
