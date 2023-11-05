@@ -22,7 +22,7 @@ module.exports = {
         }
           
         await interaction.deferReply();
-        interaction.client.interactionsMap.set(queue.id, interaction);
+        interaction.client.lastInteractionMap.set(queue.id, interaction);
 
         await queue.jump(-jumpCount);
         if (queue.paused) {

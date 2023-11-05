@@ -16,7 +16,7 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
     ],
 });
-client.interactionsMap = new Map();
+client.lastInteractionMap = new Map();
 
 // Load DisTube
 client.distube = new DisTube(client, {
@@ -94,7 +94,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.distube
     .on('playSong', async (queue, song) => {
-        const interaction = client.interactionsMap.get(queue.id);
+        const interaction = client.lastInteractionMap.get(queue.id);
         if (interaction.replied) { // The reply was sent on adding the song to the queue
             await interaction.channel.send({ embeds: [playSongEmbed(queue, song)], flags: [ 4096 ] });
         } else {
@@ -116,7 +116,7 @@ client.distube
             .setTimestamp()
             .setFooter({ text: 'From OtemBot' });
             
-        const interaction = client.interactionsMap.get(queue.id);
+        const interaction = client.lastInteractionMap.get(queue.id);
         await interaction.editReply({ embeds: [addEmbed] });
     });
 

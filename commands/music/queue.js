@@ -13,7 +13,7 @@ module.exports = {
         let limitReached = false;
         let result = '';
         for (const [i, song] of queue.songs.entries()) {
-            const songString = `${i === 0 ? 'Playing:' : `${i + 1}.`} [${song.name}](<${song.url}>) - ${song.formattedDuration}`;
+            const songString = `${i === 0 ? 'Playing:' : `${i}.`} [${song.name}](<${song.url}>) - ${song.formattedDuration}`;
             if ((result.length + songString.length) <= limit) {
                 result += `${songString}\n`;
             } else {

@@ -10,27 +10,23 @@ module.exports = {
             option.setName('count')
                 .setDescription('How many songs to skip, the next song is played if the count isn\'t specified.')
                 .setMinValue(1)),
-    async execute(interaction) {        
+    async execute(interaction) {
         const queue = interaction.client.distube.getQueue(interaction.guildId);
-        const currentSongName = queue.songs[0].name;
         const skipCount = interaction.options.getInteger('count') ?? 1;
-        const actualSkipCount = Math.min(skipCount, queue.songs.length);
 
-        if (queue.songs.length - 1 < skipCount) {
-            let replyStr = 'Skipping ';
-            replyStr += `${(actualSkipCount > 1) ? `${actualSkipCount} songs` : `\`${currentSongName}\``}.`;
-            if (!queue.autoplay) {
-                replyStr += ' There are no more songs in the queue.';
+        if (skipCount >= queue.songs.length) {
+            const replyStr = `Skipping ${(queue.songs.length > 1) ? `${queue.songs.length} songs` : `\`${queue.songs[0].name}\``}.`;
+
+            if (queue.autoplay) {
+                interaction.reply(replyStr);
+                return queue.skip();
             }
-
-            interaction.reply(replyStr);
-
-            queue.autoplay ? queue.skip() : queue.stop();
-            return;
+            interaction.reply(`${replyStr} There are no more songs in the queue.`);
+            return queue.stop();
         }
 
         await interaction.deferReply();
-        interaction.client.interactionsMap.set(queue.id, interaction);
+        interaction.client.lastInteractionMap.set(queue.id, interaction);
 
         await queue.jump(skipCount);
         if (queue.paused) {

@@ -10,9 +10,17 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('lyrics')
-        .setDescription('Fetch the lyrics to the song currently playing.'),
+        .setDescription('Find the lyrics to the song currently playing.'),
     async fetchLyrics(songName) {
-        let queryParts = songName.split(' ');
+        let queryParts = songName
+            .replace(/\([^)]*\)/g, '')           // remove anything between parentheses
+            .replace(/\[[^\]]*\]/g, '')          // remove anything between brackets
+            .replace(/\{[^\}]*\]/g, '')          // remove anything between accolades
+            .replace(/\|[^|]*$/, '')             // remove anything after a '|' character
+            .replace(/「[^」]*」/g, '')          // remove anything between 「 and 」
+            .replace(/\b(lyrics|lyric)\b/gi, '') // remove the words "lyric" and "lyrics"
+            .split(' ')
+            .filter(part => part.length > 0);
 
         while (queryParts.length > 0) {
             const query = encodeURIComponent(queryParts.join(' '));
@@ -25,7 +33,6 @@ module.exports = {
                     return await this.fetchParseLyrics(songUrl);
                 }
             }
-
             queryParts.pop();
         }
 
