@@ -10,14 +10,17 @@ module.exports = {
     requiresNonEmptyQueue: true,
     data: new SlashCommandBuilder()
         .setName('lyrics')
-        .setDescription('Find the lyrics to the song currently playing.'),
+        .setDescription('Find the lyrics to the song currently playing.')
+        .addStringOption(option =>
+            option.setName('name')
+                .setDescription("Manually specify the song name and artist, in case the lyrics found weren't correct.")),
     async fetchLyrics(songName) {
         let queryParts = songName
-            .replace(/\([^)]*\)/g, '')           // remove anything between parentheses
-            .replace(/\[[^\]]*\]/g, '')          // remove anything between brackets
-            .replace(/\{[^\}]*\]/g, '')          // remove anything between accolades
+            .replace(/\([^)]*\)/g, '')           // remove parentheses
+            .replace(/\[[^\]]*\]/g, '')          // remove brackets
+            .replace(/\{[^\}]*\]/g, '')          // remove accolades
             .replace(/\|[^|]*$/, '')             // remove anything after a '|' character
-            .replace(/「[^」]*」/g, '')          // remove anything between 「 and 」
+            .replace(/「[^」]*」/g, '')          // remove 「 and 」
             .replace(/\b(lyrics|lyric)\b/gi, '') // remove the words "lyric" and "lyrics"
             .split(' ')
             .filter(part => part.length > 0);
@@ -66,7 +69,7 @@ module.exports = {
         await interaction.deferReply();
 
         const queue = interaction.client.distube.getQueue(interaction.guildId);
-        const songName = queue.songs[0].name;
+        const songName = interaction.options.getString('name') ?? queue.songs[0].name;
 
         const lyrics = await this.fetchLyrics(songName);
 
