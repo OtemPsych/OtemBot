@@ -1,6 +1,6 @@
 # OtemBot
 
-An educational project that uses a Discord bot that can play music in a voice channel by providing a query to search and play a YouTube video, or by directly providing a YouTube/SoundCloud/Spotify URL. This bot uses [Discord.js 14](https://discord.js.org/) and [DisTube.js](https://distube.js.org/#/) to provide music playback in a Discord server.
+An educational project of a Discord bot that can play music in a voice channel by providing a query to search and play a YouTube video, or by directly providing a YouTube/SoundCloud/Spotify URL. This bot uses [Discord.js 14](https://discord.js.org/) and [DisTube.js](https://distube.js.org/#/) to provide music playback in a Discord server.
 
 ## Features
 
@@ -9,7 +9,7 @@ An educational project that uses a Discord bot that can play music in a voice ch
 * Volume control to adjust the bot's volume in the voice channel.
 * Skip, pause, resume and stop playback.
 * Seek to a specific timestamp in the song.
-* Automatically fetch the lyrics to the song currently playing.
+* Fetch the lyrics to the song currently playing.
 * Shuffle the enqueued songs.
 * Continue playing related songs when the queue is empty after enabling autoplay.
 
@@ -44,7 +44,8 @@ An educational project that uses a Discord bot that can play music in a voice ch
 
 * Node Package Manager (NPM)
 * Node.js
-* axios
+* [axios](https://www.npmjs.com/package/axios)
+* [cheerio](https://www.npmjs.com/package/cheerio)
 * [@discordjs/opus](https://www.npmjs.com/package/@discordjs/opus)
 * [@discordjs/voice](https://www.npmjs.com/package/@discordjs/voice)
 * [@distube/soundcloud](https://www.npmjs.com/package/@distube/soundcloud)
@@ -82,7 +83,7 @@ npm install
     "token": "<YOUR BOT'S TOKEN HERE>",
     "clientId": "<YOUR BOT'S APPLICATION ID HERE>",
     "guildId": "<OPTIONALLY ADD THE SERVER ID OF YOUR DEVELOPMENT SERVER HERE>",
-	"geniusToken": "<YOUR GENIUS TOKEN FOR FETCHING SONG LYRICS (ACCOUNT NEEDED)>",
+    "geniusToken": "<YOUR GENIUS TOKEN FOR FETCHING SONG LYRICS (ACCOUNT NEEDED)>",
     ...
 }
 ```
